@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @RestController
@@ -58,9 +59,9 @@ public class ItemController {
     @RequestMapping("items/buy")
     public String buyItem(@RequestParam Long customerId, @RequestParam Long itemId) {
         Customer customer = customerRepo.findAll().stream()
-                .filter(currentCustomer -> currentCustomer.getCustomerId()==customerId).findFirst().orElse(null);
+                .filter(currentCustomer -> Objects.equals(currentCustomer.getCustomerId(), customerId)).findFirst().orElse(null);
         Item item = itemRepo.findAll().stream()
-                .filter(currentItem -> currentItem.getItemId()==itemId).findFirst().orElse(null);
+                .filter(currentItem -> Objects.equals(currentItem.getItemId(), itemId)).findFirst().orElse(null);
         if (customer != null && item != null) {
             LocalDateTime localDateTimeNow = LocalDateTime.now();
             Timestamp timestamp = Timestamp.valueOf(localDateTimeNow);

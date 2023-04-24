@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.logging.Logger;
 
 @SpringBootApplication
@@ -22,7 +21,7 @@ public class StoreApiApplication {
     private final Logger log = Logger.getLogger(StoreApiApplication.class.getName());
     LocalDateTime localDateTimeNow = LocalDateTime.now();
 
-    private Timestamp today = Timestamp.valueOf(localDateTimeNow);
+    private final Timestamp today = Timestamp.valueOf(localDateTimeNow);
 
 
 
