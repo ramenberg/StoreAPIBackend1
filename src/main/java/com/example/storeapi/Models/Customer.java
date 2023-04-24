@@ -22,6 +22,7 @@ public class Customer {
     private Long customerId;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String ssn;
 
     public Customer(String firstName, String lastName, String ssn) {
