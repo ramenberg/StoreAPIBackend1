@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -19,8 +20,10 @@ import java.util.logging.Logger;
 public class StoreApiApplication {
 
     private final Logger log = Logger.getLogger(StoreApiApplication.class.getName());
+    LocalDateTime localDateTimeNow = LocalDateTime.now();
 
-    private Timestamp today = new Timestamp(2023,04,24,14,33,33,333);
+    private Timestamp today = Timestamp.valueOf(localDateTimeNow);
+
 
 
     public static void main(String[] args) {
@@ -31,10 +34,20 @@ public class StoreApiApplication {
     public CommandLineRunner prepDb(CustomerRepo customerRepo, ItemRepo itemRepo, OrderRepo orderRepo) {
         return (args) -> {
 
-            log.info("Prep items" +
-            itemRepo.save(new Item("Ananas", 25.0)) + " " +
-            itemRepo.save(new Item("Gurka", 17.9)) + " " +
-            itemRepo.save(new Item("Kaffe", 109.0)));
+
+            log.info("Prep items " +
+                    itemRepo.save(new Item("Ananas", 25.0)) + " " +
+                    itemRepo.save(new Item("Gurka", 17.9)) + " " +
+                    itemRepo.save(new Item("Kaffe", 109.0)) + " " +
+                    itemRepo.save(new Item("Choklad", 35.0)) + " " +
+                    itemRepo.save(new Item("Té med smak av vilda bär", 34.0)) + " " +
+                    itemRepo.save(new Item("Ost", 89.00)) + " " +
+                    itemRepo.save(new Item("Smör", 55.0)) + " " +
+                    itemRepo.save(new Item("Bröd med frukt och nötter", 69.0)) + " " +
+                    itemRepo.save(new Item("Lantmjölk", 22.0)) + " " +
+                    itemRepo.save(new Item("Apelsiner", 20.0)) + " " +
+                    itemRepo.save(new Item("Bananer", 25.0)) + " " +
+                    itemRepo.save(new Item("Potatis Amandine", 28.0)));
 
 
             Customer c1 = new Customer("David", "Smith", "123456");
@@ -47,13 +60,10 @@ public class StoreApiApplication {
             log.info("Prep customers" + c1 + " " + c2 + " " + c3);
 
 
-            orderRepo.save(new Order(today,c1));
-            orderRepo.save(new Order(today,c2));
-            orderRepo.save(new Order(today,c2));
+            orderRepo.save(new Order(today, c1));
+            orderRepo.save(new Order(today, c2));
+            orderRepo.save(new Order(today, c2));
 
         };
-
     }
-
-
 }
