@@ -56,6 +56,7 @@ public class CustomerController {
     }
     public Customer saveNewCustomer(Customer customer) {
         log.info("Successfully created new customer: " + customer + ".");
-        return customerRepo.save(customer);
+        customerRepo.save(customer);
+        return customer;
     }
 }

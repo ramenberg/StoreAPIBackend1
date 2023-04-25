@@ -54,21 +54,22 @@ class CustomerControllerTest {
         assertEquals("Jane", customer.getFirstName());
     }
 
-    // TODO test för ny kund
-
     @Test
     void customerWithSsnAlreadyExistsTest() {
         assertTrue(customerController.customerWithSsnAlreadyExists("1234"));
     }
 
     @Test
-    void customerDoesNotHaveAllRequiredFields() {
+    void customerDoesNotHaveAllRequiredFieldsTest() {
         Customer c = new Customer("Inge", "Ring", null);
         assertTrue(customerController.customerDoesNotHaveAllRequiredFields(c));
     }
 
     @Test
     void saveNewCustomerTest() {
-        assertEquals("Jane", customerMockRepo.findBySsn("0987").getFirstName());
+        Customer c = new Customer("Inge", "Ring", "0000");
+        Customer customer = customerController.saveNewCustomer(c);
+        System.out.println(customer);
+        assertEquals("Inge", customer.getFirstName());
     }
 }
