@@ -1,5 +1,6 @@
 package com.example.storeapi.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Item {
     private Double price;
 
     @ManyToMany(mappedBy = "items")
+    @JsonIgnore
     //@JoinColumn
     private List<Order> orders = new ArrayList<>();
 

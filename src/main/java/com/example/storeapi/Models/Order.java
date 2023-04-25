@@ -28,7 +28,7 @@ public class Order {
     private Customer customer;
 
     @ManyToMany
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(
             name = "orders_items",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -45,5 +45,11 @@ public class Order {
     public Order(Timestamp timestamp, Customer customer) {
         this.timestamp = timestamp;
         this.customer = customer;
+    }
+
+    public Order(Timestamp timestamp, Customer customer, Set<Item> items) {
+        this.timestamp = timestamp;
+        this.customer = customer;
+        this.items = items;
     }
 }

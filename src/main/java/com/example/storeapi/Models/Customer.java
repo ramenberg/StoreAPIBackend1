@@ -1,5 +1,6 @@
 package com.example.storeapi.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,7 @@ public class Customer {
     }
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private Set<Order> orders = new HashSet<>();
 
 }
