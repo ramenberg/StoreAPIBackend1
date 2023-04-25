@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class StoreApiApplication {
 
     private final Logger log = Logger.getLogger(StoreApiApplication.class.getName());
-    private final Timestamp today = new Timestamp(2023,04,24,14,33,33,0);
+    private final Timestamp today = new Timestamp(new Date().getTime());
 
 
     public static void main(String[] args) {

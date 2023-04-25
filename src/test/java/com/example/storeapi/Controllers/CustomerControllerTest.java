@@ -25,12 +25,15 @@ class CustomerControllerTest {
 
     @BeforeEach
     void setUp() {
-        Customer c1 = new Customer("John", "Doe", "1234567890");
-        Customer c2 = new Customer("Jane", "Done", "0987654321");
+        Customer c1 = new Customer("John", "Doe", "1234");
+        Customer c2 = new Customer("Jane", "Done", "0987");
         when(customerMockRepo.findAll()).thenReturn(Arrays.asList(c1, c2));
         when(customerMockRepo.findById(1L)).thenReturn(Optional.of(c1));
         when(customerMockRepo.findById(2L)).thenReturn(Optional.of(c2));
         when(customerMockRepo.findById(3L)).thenReturn(Optional.empty());
+        when(customerMockRepo.findBySsn("1234")).thenReturn(c1);
+        when(customerMockRepo.findBySsn("0987")).thenReturn(c2);
+        when(customerMockRepo.findBySsn("0000")).thenReturn(null);
     }
 
     @Test
@@ -44,6 +47,7 @@ class CustomerControllerTest {
         List<Customer> customers = customerController.all();
         assertEquals("John", customers.get(0).getFirstName());
     }
+
     @Test
     void one() {
         Customer customer = customerController.one(2L);
@@ -51,4 +55,20 @@ class CustomerControllerTest {
     }
 
     // TODO test för ny kund
+
+    @Test
+    void customerWithSsnAlreadyExistsTest() {
+        assertTrue(customerController.customerWithSsnAlreadyExists("1234"));
+    }
+
+    @Test
+    void customerDoesNotHaveAllRequiredFields() {
+        Customer c = new Customer("Inge", "Ring", null);
+        assertTrue(customerController.customerDoesNotHaveAllRequiredFields(c));
+    }
+
+    @Test
+    void saveNewCustomerTest() {
+        assertEquals("Jane", customerMockRepo.findBySsn("0987").getFirstName());
+    }
 }

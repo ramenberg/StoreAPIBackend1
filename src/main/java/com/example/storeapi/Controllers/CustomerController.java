@@ -41,8 +41,7 @@ public class CustomerController {
             log.info("Invalid customer: " + newCustomer + ".");
             return newCustomer;
         } else {
-            log.info("Successfully created new customer: " + newCustomer + ".");
-            return customerRepo.save(newCustomer);
+            return saveNewCustomer(newCustomer);
         }
     }
 
@@ -54,5 +53,9 @@ public class CustomerController {
                 customer.getLastName() == null ||
                 customer.getSsn() == null;
 
+    }
+    public Customer saveNewCustomer(Customer customer) {
+        log.info("Successfully created new customer: " + customer + ".");
+        return customerRepo.save(customer);
     }
 }
