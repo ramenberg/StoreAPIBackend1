@@ -50,8 +50,9 @@ public class CustomerController {
         return customerRepo.findBySsn(ssn) != null;
     }
     public Boolean customerDoesNotHaveAllRequiredFields(Customer customer) {
-        return customer.getFirstName() == null &&
-                customer.getLastName() == null &&
+        return customer.getFirstName() == null ||
+                customer.getLastName() == null ||
                 customer.getSsn() == null;
+
     }
 }

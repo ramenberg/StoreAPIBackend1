@@ -26,7 +26,7 @@ class CustomerControllerTest {
     @BeforeEach
     void setUp() {
         Customer c1 = new Customer("John", "Doe", "1234567890");
-        Customer c2 = new Customer("Jane", "Doe", "0987654321");
+        Customer c2 = new Customer("Jane", "Done", "0987654321");
         when(customerMockRepo.findAll()).thenReturn(Arrays.asList(c1, c2));
         when(customerMockRepo.findById(1L)).thenReturn(Optional.of(c1));
         when(customerMockRepo.findById(2L)).thenReturn(Optional.of(c2));
@@ -46,7 +46,9 @@ class CustomerControllerTest {
     }
     @Test
     void one() {
-        Customer customer = customerController.one(1L);
-        assertEquals("John", customer.getFirstName());
+        Customer customer = customerController.one(2L);
+        assertEquals("Jane", customer.getFirstName());
     }
+
+    // TODO test för ny kund
 }
