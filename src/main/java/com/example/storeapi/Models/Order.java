@@ -28,7 +28,7 @@ public class Order {
     private Customer customer;
 
     @ManyToMany
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(
             name = "orders_items",
             joinColumns = @JoinColumn(name = "order_id"),
