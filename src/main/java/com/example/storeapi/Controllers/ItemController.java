@@ -56,23 +56,23 @@ public class ItemController {
 
     // http://localhost:8080/items/buy (Denna endpoint gör ett nytt köp för en specifik kund och
     // en specifik vara, baserat på id).
-    @PostMapping("items/buy")
-    public String buyItem(@RequestParam Long customerId, @RequestParam Long itemId) {
-        Customer customer = customerRepo.findAll().stream()
-                .filter(currentCustomer -> Objects.equals(currentCustomer.getCustomerId(), customerId)).findFirst().orElse(null);
-        Item item = itemRepo.findAll().stream()
-                .filter(currentItem -> Objects.equals(currentItem.getItemId(), itemId)).findFirst().orElse(null);
-        if (customer != null && item != null) {
-            Timestamp timestamp = new Timestamp(new Date().getTime());
-            Set<Item> items = new HashSet<>();
-            items.add(item);
-            orderRepo.save(new Order(timestamp, customer, items));
-            log.info("Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName());
-            return "Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName();
-        }
-        log.error("An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.");
-        return "An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.";
-    }
+//    @PostMapping("items/buy")
+//    public String buyItem(@RequestParam Long customerId, @RequestParam Long itemId) {
+//        Customer customer = customerRepo.findAll().stream()
+//                .filter(currentCustomer -> Objects.equals(currentCustomer.getCustomerId(), customerId)).findFirst().orElse(null);
+//        Item item = itemRepo.findAll().stream()
+//                .filter(currentItem -> Objects.equals(currentItem.getItemId(), itemId)).findFirst().orElse(null);
+//        if (customer != null && item != null) {
+//            Timestamp timestamp = new Timestamp(new Date().getTime());
+//            Set<Item> items = new HashSet<>();
+//            items.add(item);
+//            orderRepo.save(new Order(timestamp, customer, items));
+//            log.info("Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName());
+//            return "Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName();
+//        }
+//        log.error("An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.");
+//        return "An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.";
+//    }
 
     public Boolean itemAlreadyExists(Item itemToCheck) {
         List<Item> itemsWithSameName = itemRepo.findAll().stream().filter(currentItem ->

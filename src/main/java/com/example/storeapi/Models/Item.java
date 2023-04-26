@@ -22,10 +22,15 @@ public class Item {
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "items")
+    @OneToMany(mappedBy = "orderItemId", cascade = CascadeType.ALL)
+    @ToString.Exclude
     @JsonIgnore
-    //@JoinColumn
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+//    @ManyToMany(mappedBy = "items")
+//    @JsonIgnore
+//    //@JoinColumn
+//    private List<Order> orders = new ArrayList<>();
 
     // Constructors
 
