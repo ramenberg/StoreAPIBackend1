@@ -46,4 +46,10 @@ public class Order {
         this.timestamp = timestamp;
         this.customer = customer;
     }
+
+    public Order(Timestamp timestamp, Customer customer, Set<Item> items) {
+        this.timestamp = timestamp;
+        this.customer = customer;
+        this.items = items;
+    }
 }

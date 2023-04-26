@@ -22,11 +22,9 @@ public class Item {
     private Double price;
 
     @ManyToMany(mappedBy = "items")
-    //@JoinColumn
     private List<Order> orders = new ArrayList<>();
 
     // Constructors
-
     public Item(String name, Double price) {
         this.name = name;
         this.price = price;

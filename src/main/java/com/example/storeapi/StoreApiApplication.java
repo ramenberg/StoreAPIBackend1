@@ -34,10 +34,20 @@ public class StoreApiApplication {
             if (itemRepo.count() > 0 || customerRepo.count() > 0 || orderRepo.count() > 0) {
                 log.info("Prep items already in db");
             } else {
-                log.info("Prep items" +
-                itemRepo.save(new Item("Ananas", 25.0)) + " " +
-                itemRepo.save(new Item("Gurka", 17.9)) + " " +
-                itemRepo.save(new Item("Kaffe", 109.0)));
+            log.info("Prep items " +
+                    itemRepo.save(new Item("Ananas", 25.0)) + " " +
+                    itemRepo.save(new Item("Gurka", 17.9)) + " " +
+                    itemRepo.save(new Item("Kaffe", 109.0)) + " " +
+                    itemRepo.save(new Item("Choklad", 35.0)) + " " +
+                    itemRepo.save(new Item("Té med smak av vilda bär", 34.0)) + " " +
+                    itemRepo.save(new Item("Ost", 89.00)) + " " +
+                    itemRepo.save(new Item("Smör", 55.0)) + " " +
+                    itemRepo.save(new Item("Bröd med frukt och nötter", 69.0)) + " " +
+                    itemRepo.save(new Item("Lantmjölk", 22.0)) + " " +
+                    itemRepo.save(new Item("Apelsiner", 20.0)) + " " +
+                    itemRepo.save(new Item("Bananer", 25.0)) + " " +
+                    itemRepo.save(new Item("Potatis Amandine", 28.0)));
+
 
                 Customer c1 = new Customer("David", "Smith", "123456");
                 Customer c2 = new Customer("Nana", "Yamamoto", "456789");
@@ -53,5 +63,8 @@ public class StoreApiApplication {
                 orderRepo.save(new Order(today,c2));
             }
         };
+
     }
+
+
 }
