@@ -32,14 +32,14 @@ public class CustomerController {
 
     @PostMapping("/customers")
     public Customer newCustomer(@RequestBody Customer newCustomer) {
-        // Kontrollera att kund med ssn(unikt) inte redan finns
-        if (customerWithSsnAlreadyExists(newCustomer.getSsn())) {
-            log.info("Customer with ssn " + newCustomer.getSsn() + " already exists.");
-            return customerRepo.findBySsn(newCustomer.getSsn());
-        } // Kontrollera att alla fält är ifyllda
-        else if (customerDoesNotHaveAllRequiredFields(newCustomer)) {
+        // Kontrollera att alla fält är ifyllda
+        if (customerDoesNotHaveAllRequiredFields(newCustomer)) {
             log.info("Invalid customer: " + newCustomer + ".");
             return newCustomer;
+            // Kontrollera att kund med ssn(unikt) inte redan finns
+        } else if (customerWithSsnAlreadyExists(newCustomer.getSsn())) {
+            log.info("Customer with ssn " + newCustomer.getSsn() + " already exists.");
+            return customerRepo.findBySsn(newCustomer.getSsn());
         } else {
             return saveNewCustomer(newCustomer);
         }

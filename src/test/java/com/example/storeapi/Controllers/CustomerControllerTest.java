@@ -69,7 +69,6 @@ class CustomerControllerTest {
     void saveNewCustomerTest() {
         Customer c = new Customer("Inge", "Ring", "0000");
         Customer customer = customerController.saveNewCustomer(c);
-        System.out.println(customer);
         assertEquals("Inge", customer.getFirstName());
     }
 }

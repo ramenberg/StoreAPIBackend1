@@ -53,7 +53,6 @@ public class Customer {
 
     // Getters and setters
 
-
     public Long getCustomerId() {
         return customerId;
     }
