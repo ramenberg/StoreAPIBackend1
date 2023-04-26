@@ -24,7 +24,6 @@ public class Item {
 
     @ManyToMany(mappedBy = "items")
     @JsonIgnore
-    //@JoinColumn
     private List<Order> orders = new ArrayList<>();
 
     // Constructors
@@ -33,5 +32,4 @@ public class Item {
         this.name = name;
         this.price = price;
     }
-
 }

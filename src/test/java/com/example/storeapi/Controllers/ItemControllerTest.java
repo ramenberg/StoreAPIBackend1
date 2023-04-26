@@ -38,7 +38,7 @@ class ItemControllerTest {
 
     @BeforeEach
     public void init() {
-        Item i1 = new Item(1L, "Ananas", 25.0, null);
+        Item i1 = new Item(1L, "Ananas", 25.0,null);
         Item i2 = new Item(2L, "Gurka", 17.9, null);
         Item i3 = new Item(3L, "Kaffe", 109.0, null);
         Item i4 = new Item(4L, "Choklad", 35.0, null);
@@ -79,24 +79,24 @@ class ItemControllerTest {
     @Test
     void getAllItems() throws Exception {
         this.mvc.perform(get("/items")).andExpect(status().isOk()).
-                andExpect(content().json("[{\"name\":\"Ananas\",\"itemId\":1,\"orders\":null,\"price\":25.0}," +
-                        "{\"name\":\"Gurka\",\"orders\":null,\"itemId\":2,\"price\":17.9}," +
-                        "{\"name\":\"Kaffe\",\"orders\":null,\"itemId\":3,\"price\":109.0}," +
-                        "{\"name\":\"Choklad\",\"orders\":null,\"itemId\":4,\"price\":35.0}," +
-                        "{\"name\":\"Té med smak av vilda bär\",\"orders\":null,\"itemId\":5,\"price\":34.0}," +
-                        "{\"name\":\"Ost\",\"orders\":null,\"itemId\":6,\"price\":89.0}," +
-                        "{\"name\":\"Smör\",\"orders\":null,\"itemId\":7,\"price\":55.0}," +
-                        "{\"name\":\"Bröd med frukt och nötter\",\"orders\":null,\"itemId\":8,\"price\":69.0}," +
-                        "{\"name\":\"Lantmjölk\",\"orders\":null,\"itemId\":9,\"price\":22.0}," +
-                        "{\"name\":\"Apelsiner\",\"orders\":null,\"itemId\":10,\"price\":20.0}," +
-                        "{\"name\":\"Bananer\",\"orders\":null,\"itemId\":11,\"price\":25.0}," +
-                        "{\"name\":\"Potatis Amandine\",\"orders\":null,\"itemId\":12,\"price\":28.0}]"));
+                andExpect(content().json("[{\"name\":\"Ananas\",\"itemId\":1,\"price\":25.0}," +
+                        "{\"name\":\"Gurka\",\"itemId\":2,\"price\":17.9}," +
+                        "{\"name\":\"Kaffe\",\"itemId\":3,\"price\":109.0}," +
+                        "{\"name\":\"Choklad\",\"itemId\":4,\"price\":35.0}," +
+                        "{\"name\":\"Té med smak av vilda bär\",\"itemId\":5,\"price\":34.0}," +
+                        "{\"name\":\"Ost\",\"itemId\":6,\"price\":89.0}," +
+                        "{\"name\":\"Smör\",\"itemId\":7,\"price\":55.0}," +
+                        "{\"name\":\"Bröd med frukt och nötter\",\"itemId\":8,\"price\":69.0}," +
+                        "{\"name\":\"Lantmjölk\",\"itemId\":9,\"price\":22.0}," +
+                        "{\"name\":\"Apelsiner\",\"itemId\":10,\"price\":20.0}," +
+                        "{\"name\":\"Bananer\",\"itemId\":11,\"price\":25.0}," +
+                        "{\"name\":\"Potatis Amandine\",\"itemId\":12,\"price\":28.0}]"));
     }
 
     @Test
     void getItemById() throws Exception {
         this.mvc.perform(get("/items/8")).andExpect(status().isOk()).
-                andExpect(content().json("{\"name\":\"Bröd med frukt och nötter\",\"orders\":null,\"itemId\":8,\"price\":69.0}"));
+                andExpect(content().json("{\"name\":\"Bröd med frukt och nötter\",\"itemId\":8,\"price\":69.0}"));
     }
 
     //Två tester för att kontroller endpoint addItem. Den ena testen tar in en vara som inte existerar i databasen medan den andra tar in en vara som gör det.
@@ -119,34 +119,11 @@ class ItemControllerTest {
 
     }
 
-    //x-www-form-urlencoded
-    //customerId=3&itemId=8
-    /*
     @Test
     void buyItem() throws Exception {
         this.mvc.perform(post("/items/buy")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("customerId", "3").param("itemId", "8")).andExpect(status().isOk()).
                 andExpect(content().string(equalTo("Item Bröd med frukt och nötter has been bought by the customer Erik Ljunggren")));
     }
-    */
-    /*
-    @PostMapping("items/buy")
-    public String buyItem(@RequestParam Long customerId, @RequestParam Long itemId) {
-        Customer customer = customerRepo.findAll().stream()
-                .filter(currentCustomer -> Objects.equals(currentCustomer.getCustomerId(), customerId)).findFirst().orElse(null);
-        Item item = itemRepo.findAll().stream()
-                .filter(currentItem -> Objects.equals(currentItem.getItemId(), itemId)).findFirst().orElse(null);
-        if (customer != null && item != null) {
-            Timestamp timestamp = new Timestamp(new Date().getTime());
-            Set<Item> items = new HashSet<>();
-            items.add(item);
-            orderRepo.save(new Order(timestamp, customer, items));
-            log.info("Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName());
-            return "Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName();
-        }
-        log.error("An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.");
-        return "An error occurred while buying this item. Please check that CUSTOMER ID or ITEM ID are correct and exist.";
-    }
-     */
 }
