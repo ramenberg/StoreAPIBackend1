@@ -76,14 +76,6 @@ public class ItemController {
             OrderItem orderItem = new OrderItem(order,item,1);
             orderItemRepo.save(orderItem);
 
-            /*
-            Set<OrderItem> orderItems = new HashSet<>();
-            orderItems.add(orderItem);
-
-
-            order.setOrderItems(orderItems);
-            orderRepo.save(order);*/
-
             log.info("Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName());
             return "Item " + item.getName() + " has been bought by the customer " + customer.getFirstName() + " " + customer.getLastName();
         }
