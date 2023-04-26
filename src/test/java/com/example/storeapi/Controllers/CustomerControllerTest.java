@@ -54,8 +54,6 @@ class CustomerControllerTest {
         assertEquals("Jane", customer.getFirstName());
     }
 
-    // TODO test för ny kund
-
     @Test
     void customerWithSsnAlreadyExistsTest() {
         assertTrue(customerController.customerWithSsnAlreadyExists("1234"));
