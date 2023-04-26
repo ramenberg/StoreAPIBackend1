@@ -2,7 +2,7 @@
 POST http://localhost:8080/items/buy
 Content-Type: application/x-www-form-urlencoded
 
-customerId=3&itemId=8
+customerId=2&itemId=7
 
 ###
 //Post Parameters Body (INCORRECT parameters):

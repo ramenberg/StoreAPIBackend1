@@ -35,6 +35,11 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
+    public OrderItem(Item item, Integer quantity) {
+        this.item = item;
+        this.quantity = quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
