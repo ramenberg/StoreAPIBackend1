@@ -1,13 +1,19 @@
 package com.example.storeapi.Controllers;
 
+import com.example.storeapi.Models.Customer;
 import com.example.storeapi.Models.Order;
 import com.example.storeapi.Repos.CustomerRepo;
 import com.example.storeapi.Repos.ItemRepo;
 import com.example.storeapi.Repos.OrderRepo;
+import jakarta.websocket.server.PathParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 @RestController
 public class OrderController {
@@ -27,9 +33,14 @@ public class OrderController {
     @RequestMapping("orders")
     public List<Order> getAllOrders(){
 
-
-
         return orderRepo.findAll() ;
+    }
+
+    @RequestMapping("orders/{customerId}")
+
+    public List<Order> getCustomerOrders(@PathVariable Long customerId){
+
+        return orderRepo.findAll().stream().filter(order -> order.getCustomer().equals(customerRepo.findById(customerId).get())).toList();
     }
 
 
