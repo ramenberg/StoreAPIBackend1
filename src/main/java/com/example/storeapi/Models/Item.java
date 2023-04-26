@@ -27,11 +27,6 @@ public class Item {
     @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "items")
-//    @JsonIgnore
-//    //@JoinColumn
-//    private List<Order> orders = new ArrayList<>();
-
     // Constructors
 
     public Item(String name, Double price) {

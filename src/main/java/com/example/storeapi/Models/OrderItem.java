@@ -1,5 +1,6 @@
 package com.example.storeapi.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -19,6 +20,7 @@ public class OrderItem {
     // Many to one
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
