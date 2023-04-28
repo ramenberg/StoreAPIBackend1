@@ -18,16 +18,14 @@ public class CustomerController {
         this.customerRepo = customerRepo;
     }
 
-    @GetMapping("/customers")
-    public List<Customer> all() {
-        log.info("GET all /customers");
-        return customerRepo.findAll();
-    }
-
     @GetMapping("/customers/{id}")
     public Customer one(@PathVariable Long id) {
         log.info("GET /customers/" + id);
         return customerRepo.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
+    }
+
+    public List<Customer> all() {
+        return customerRepo.findAll();
     }
 
     @PostMapping("/customers")
