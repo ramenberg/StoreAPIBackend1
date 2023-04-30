@@ -5,6 +5,7 @@ import com.example.storeapi.Repos.CustomerRepo;
 import com.example.storeapi.Repos.ItemRepo;
 import com.example.storeapi.Repos.OrderItemRepo;
 import com.example.storeapi.Repos.OrderRepo;
+import com.example.storeapi.exceptions.ItemNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -39,5 +40,17 @@ public class ItemThymeleafController {
         model.addAttribute("price", "Price:");
         model.addAttribute("title", "All items in our database:");
         return "showAllItems";
+    }
+
+    // http://localhost:8080/graphics/items/{id} (Denna genererar HTML-sida som visar en vara baserat på varans id)
+    @RequestMapping("/items/{id}")
+    public String getItemById(@PathVariable long id, Model model) {
+        List<Item> itemList = itemRepo.findAll().stream().filter(item -> item.getItemId()==(id)).toList();
+        model.addAttribute("allItems", itemList);
+        model.addAttribute("id", "Id:");
+        model.addAttribute("name", "Name:");
+        model.addAttribute("price", "Price:");
+        model.addAttribute("title", "The item you required:");
+        return "showItem";
     }
 }
