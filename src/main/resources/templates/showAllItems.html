@@ -15,12 +15,17 @@
         <tr>
             <th th:text="${name}" style="text-align: left; border: 1px solid black; padding: 10px"></th>
             <th th:text="${price}" style="text-align: left; border: 1px solid black; padding: 10px"></th>
+            <th style="border-bottom-color: white; border-top-color: white; border-right-color: white"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${allItems}">
             <td th:text="${item.name}" style="text-align: left; border: 1px solid black; padding: 10px"></td>
             <td th:text="${item.price}" style="text-align: left; border: 1px solid black; padding: 10px"></td>
+            <td style="border-bottom-color: white; border-top-color: white; border-right-color: white; padding: 10px; text-align: center">
+                <a style="text-decoration: none; color: blue"
+                   th:href="@{/graphics/deleteItemById/{id}(id=${item.itemId})}">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

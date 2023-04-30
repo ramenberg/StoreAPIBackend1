@@ -36,19 +36,19 @@ public class StoreApiApplication {
             if (itemRepo.count() > 0 || customerRepo.count() > 0 || orderRepo.count() > 0) {
                 log.info("Prep items already in db");
             } else {
-            log.info("Prep items " +
-                    itemRepo.save(new Item("Ananas", 25.0)) + " " +
-                    itemRepo.save(new Item("Gurka", 17.9)) + " " +
-                    itemRepo.save(new Item("Kaffe", 109.0)) + " " +
-                    itemRepo.save(new Item("Choklad", 35.0)) + " " +
-                    itemRepo.save(new Item("Té med smak av vilda bär", 34.0)) + " " +
-                    itemRepo.save(new Item("Ost", 89.00)) + " " +
-                    itemRepo.save(new Item("Smör", 55.0)) + " " +
-                    itemRepo.save(new Item("Bröd med frukt och nötter", 69.0)) + " " +
-                    itemRepo.save(new Item("Lantmjölk", 22.0)) + " " +
-                    itemRepo.save(new Item("Apelsiner", 20.0)) + " " +
-                    itemRepo.save(new Item("Bananer", 25.0)) + " " +
-                    itemRepo.save(new Item("Potatis Amandine", 28.0)));
+                log.info("Prep items " +
+                        itemRepo.save(new Item("Ananas", 25.0)) + " " +
+                        itemRepo.save(new Item("Gurka", 17.9)) + " " +
+                        itemRepo.save(new Item("Kaffe", 109.0)) + " " +
+                        itemRepo.save(new Item("Choklad", 35.0)) + " " +
+                        itemRepo.save(new Item("Té med smak av vilda bär", 34.0)) + " " +
+                        itemRepo.save(new Item("Ost", 89.00)) + " " +
+                        itemRepo.save(new Item("Smör", 55.0)) + " " +
+                        itemRepo.save(new Item("Bröd med frukt och nötter", 69.0)) + " " +
+                        itemRepo.save(new Item("Lantmjölk", 22.0)) + " " +
+                        itemRepo.save(new Item("Apelsiner", 20.0)) + " " +
+                        itemRepo.save(new Item("Bananer", 25.0)) + " " +
+                        itemRepo.save(new Item("Potatis Amandine", 28.0)));
 
 
                 Customer c1 = new Customer("David", "Smith", "123456");
@@ -60,16 +60,16 @@ public class StoreApiApplication {
                 customerRepo.save(c3);
                 log.info("Prep customers" + c1 + " " + c2 + " " + c3);
 
-                Order o1 = new Order(today,c1);
-                Order o2= new Order(today,c2);
-                Order o3 = new Order(today,c3);
+                Order o1 = new Order(today, c1);
+                Order o2 = new Order(today, c2);
+                Order o3 = new Order(today, c3);
                 orderRepo.save(o1);
                 orderRepo.save(o2);
                 orderRepo.save(o3);
 
-                OrderItem orderItem1 = new OrderItem(o1,itemRepo.findAll().get(0),1);
-                OrderItem orderItem2 = new OrderItem(o2,itemRepo.findAll().get(1),1);
-                OrderItem orderItem3 = new OrderItem(o3,itemRepo.findAll().get(2),1);
+                OrderItem orderItem1 = new OrderItem(o1, itemRepo.findAll().get(0), 1);
+                OrderItem orderItem2 = new OrderItem(o2, itemRepo.findAll().get(1), 1);
+                OrderItem orderItem3 = new OrderItem(o3, itemRepo.findAll().get(2), 1);
                 orderItemRepo.save(orderItem1);
                 orderItemRepo.save(orderItem2);
                 orderItemRepo.save(orderItem3);

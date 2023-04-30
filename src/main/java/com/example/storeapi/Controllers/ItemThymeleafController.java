@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "/graphics")
@@ -60,9 +61,36 @@ public class ItemThymeleafController {
         return "createItem";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createItem")
     public String createItem(@RequestParam String name, @RequestParam double price, Model model) {
         itemRepo.save(new Item(name, price));
         return showAllItems(model);
+    }
+
+    @RequestMapping("/deleteItem")
+    public String getAllItemsAfterDelete(Model model) {
+        List<Item> itemList = itemRepo.findAll();
+        model.addAttribute("allItems", itemList);
+        model.addAttribute("name", "Name:");
+        model.addAttribute("price", "Price:");
+        model.addAttribute("title", "All items in our database:");
+        return "showAllItems";
+    }
+
+    @RequestMapping(path = "/deleteItemById/{id}")
+    public String deleteItem(@PathVariable Long id, Model model) {
+        itemRepo.deleteById(id);
+        return getAllItemsAfterDelete(model);
+    }
+
+    public Boolean itemAlreadyExists(Item itemToCheck) {
+        List<Item> itemsWithSameName = itemRepo.findAll().stream().filter(currentItem ->
+                currentItem.getName().equals(itemToCheck.getName())).toList();
+        if (itemsWithSameName.size() != 0) {
+            List<Item> itemsWithTheSamePrice = itemsWithSameName.stream().filter(currentItem ->
+                    Objects.equals(currentItem.getPrice(), itemToCheck.getPrice())).toList();
+            return itemsWithTheSamePrice.size() != 0;
+        }
+        return false;
     }
 }

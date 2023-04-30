@@ -8,7 +8,7 @@
 
 <h2 th:text="${title}" style="text-decoration: underline; color: slateblue; padding-left: 150px"></h2>
 
-<form action="#" th:action="@{/graphics/create}" th:object="${item}" method="post" style="padding-left: 25px">
+<form action="#" th:action="@{/graphics/createItem}" th:object="${item}" method="post" style="padding-left: 25px">
     <label for="name">Item name:</label><br>
     <input type="text" id="name" name="name" value="" style="margin-bottom: 15px; height: 20px; width: 250px"><br>
     <label for="price">Price:</label><br>
