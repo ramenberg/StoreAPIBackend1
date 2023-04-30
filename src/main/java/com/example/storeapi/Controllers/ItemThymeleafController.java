@@ -5,7 +5,6 @@ import com.example.storeapi.Repos.CustomerRepo;
 import com.example.storeapi.Repos.ItemRepo;
 import com.example.storeapi.Repos.OrderItemRepo;
 import com.example.storeapi.Repos.OrderRepo;
-import com.example.storeapi.exceptions.ItemNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
