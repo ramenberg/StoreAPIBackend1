@@ -31,7 +31,7 @@ public class ItemThymeleafController {
     }
 
     // http://localhost:8080/graphics/items (Denna genererar HTML-sida som visar alla varor)
-    @RequestMapping("/items")
+    @GetMapping("/items")
     public String showAllItems(Model model) {
         List<Item> itemList = itemRepo.findAll();
         model.addAttribute("allItems", itemList);
@@ -42,14 +42,27 @@ public class ItemThymeleafController {
     }
 
     // http://localhost:8080/graphics/items/{id} (Denna genererar HTML-sida som visar en vara baserat på varans id)
-    @RequestMapping("/items/{id}")
-    public String getItemById(@PathVariable long id, Model model) {
-        List<Item> itemList = itemRepo.findAll().stream().filter(item -> item.getItemId()==(id)).toList();
+    @GetMapping("/items/{id}")
+    public String showItemById(@PathVariable long id, Model model) {
+        List<Item> itemList = itemRepo.findAll().stream().filter(item -> item.getItemId() == (id)).toList();
         model.addAttribute("allItems", itemList);
         model.addAttribute("id", "Id:");
         model.addAttribute("name", "Name:");
         model.addAttribute("price", "Price:");
         model.addAttribute("title", "The item you required:");
         return "showItem";
+    }
+
+    // http://localhost:8080/graphics/items/add (Denna endpoint genererar HTML-sida som skapar en ny vara)
+    @RequestMapping("/items/add")
+    public String addItem(Model model) {
+        model.addAttribute("title", "Please enter information about the new product:");
+        return "createItem";
+    }
+
+    @PostMapping("/create")
+    public String createItem(@RequestParam String name, @RequestParam double price, Model model) {
+        itemRepo.save(new Item(name, price));
+        return showAllItems(model);
     }
 }
