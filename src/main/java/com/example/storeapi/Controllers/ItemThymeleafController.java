@@ -36,6 +36,7 @@ public class ItemThymeleafController {
     public String showAllItems(Model model) {
         List<Item> itemList = itemRepo.findAll();
         model.addAttribute("allItems", itemList);
+        model.addAttribute("id", "Id:");
         model.addAttribute("name", "Name:");
         model.addAttribute("price", "Price:");
         model.addAttribute("title", "All items in our database:");
@@ -71,6 +72,7 @@ public class ItemThymeleafController {
     public String getAllItemsAfterDelete(Model model) {
         List<Item> itemList = itemRepo.findAll();
         model.addAttribute("allItems", itemList);
+        model.addAttribute("id", "Id:");
         model.addAttribute("name", "Name:");
         model.addAttribute("price", "Price:");
         model.addAttribute("title", "All items in our database:");
