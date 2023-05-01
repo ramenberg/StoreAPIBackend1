@@ -28,7 +28,7 @@ public class Order {
     private Customer customer;
 
 
-    @OneToMany(mappedBy = "orderItemId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @ToString.Exclude
 //    @JsonIgnore
     private Set<OrderItem> orderItems = new HashSet<>();
