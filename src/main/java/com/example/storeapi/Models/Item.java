@@ -22,7 +22,7 @@ public class Item {
     private String name;
     private Double price;
 
-    @OneToMany(mappedBy = "orderItemId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "item")
     @ToString.Exclude
     @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
