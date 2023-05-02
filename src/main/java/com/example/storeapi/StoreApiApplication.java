@@ -28,7 +28,7 @@ public class StoreApiApplication {
         SpringApplication.run(StoreApiApplication.class, args);
     }
 
-    /*@Bean
+    @Bean
     public CommandLineRunner prepDb(CustomerRepo customerRepo, ItemRepo itemRepo, OrderRepo orderRepo, OrderItemRepo orderItemRepo) {
         return (args) -> {
 
@@ -95,5 +95,5 @@ public class StoreApiApplication {
                 orderItemRepo.save(orderItem3);
             }
         };
-    }*/
+    }
 }
