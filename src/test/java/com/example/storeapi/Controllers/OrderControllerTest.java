@@ -73,7 +73,14 @@ class OrderControllerTest {
         Order order1 = new Order(1L, null, customer1, orderItemSet1);
         Order order2 = new Order(2L, null, customer2, orderItemSet2);
 
+        List <Order> customerOrders= new ArrayList<>();
+        customerOrders.add(order2);
+
+        when(mockCustomerRepo.findById(2L)).thenReturn(Optional.of(customer2));
         when(mockOrderRepo.findAll()).thenReturn(Arrays.asList(order1, order2));
+        when(mockOrderRepo.findById(2L)).thenReturn(Optional.of(order2));
+
+        //when(mockOrderRepo.findAll().stream().filter(order -> order.getCustomer().equals(mockCustomerRepo.findById(customer2.getCustomerId()).get())).toList()).thenReturn((customerOrders));
 
 
     }
@@ -81,7 +88,8 @@ class OrderControllerTest {
 
     @Test
     void getAllOrders() throws Exception{
-        this.mvc.perform(get("/orders")).andExpect(status().isOk()).
+        this.mvc.perform(get("/orders")).
+                andExpect(status().isOk()).
                 andExpect(content().json("[{\"orderId\": 1, \"timestamp\": null, \"customer\": " +
             "{\"customerId\": 1, \"firstName\": \"Kalle\", \"lastName\":\"Anka\", \"ssn\": \"543321\"}," +
             "\"orderItems\": [{\"orderItemId\": 1, \"item\": {\"itemId\": 1, \"name\": \"Ananas\", " +
@@ -93,6 +101,12 @@ class OrderControllerTest {
     }
 
     @Test
-    void getCustomerOrders() {
+    void getCustomerOrders() throws Exception{
+        this.mvc.perform(get("/orders/2")).
+                andExpect(status().isOk()).
+                andExpect(content().json("[{\"orderId\": 2, \"timestamp\": null, \"customer\":" +
+                        "{\"customerId\": 2, \"firstName\": \"Scott\", \"lastName\":\"Eriksson\", \"ssn\": \"334524\"}," +
+                        "\"orderItems\": [{\"orderItemId\": 2, \"item\": {\"itemId\": 2, \"name\": \"Gurka\"," +
+                        "\"price\": 17.9}, \"quantity\": 1}]}]"));
     }
 }
