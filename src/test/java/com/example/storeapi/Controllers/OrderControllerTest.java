@@ -50,18 +50,18 @@ class OrderControllerTest {
     @BeforeEach
     public void init() {
 
-        Timestamp timestamp = new Timestamp(new Date().getTime());
+
 
         Item item1 = new Item(1L, "Ananas", 25.0, null);
         Item item2 = new Item(2L, "Gurka", 17.9, null);
-        Item item3 = new Item(3L, "Kaffe", 109.0, null);
+
 
         Customer customer1 = new Customer(1L, "Kalle", "Anka", "543321", null);
         Customer customer2 = new Customer(2L, "Scott", "Eriksson", "334524", null);
 
         OrderItem orderItem1 = new OrderItem(1L, null, item1, 1);
         OrderItem orderItem2 = new OrderItem(2L, null, item2, 1);
-        OrderItem orderItem3 = new OrderItem(3L, null, item3, 1);
+
 
         Set <OrderItem> orderItemSet1 = new HashSet<>();
         Set <OrderItem> orderItemSet2 = new HashSet<>();
@@ -83,9 +83,13 @@ class OrderControllerTest {
     void getAllOrders() throws Exception{
         this.mvc.perform(get("/orders")).andExpect(status().isOk()).
                 andExpect(content().json("[{\"orderId\": 1, \"timestamp\": null, \"customer\": " +
-                        "{\"customerId\": 1, \"firstName\": \"Kalle\", \"lastName\":\"Anka\", \"ssn\": \"543321\"}," +
-                        "\"orderItems\": [{\"orderItemId\": 1, \"item\": {\"itemId\": 1, \"name\": \"Ananas\", " +
-                        "\"price\": 25.0},\"quantity\": 1}]}]"));
+            "{\"customerId\": 1, \"firstName\": \"Kalle\", \"lastName\":\"Anka\", \"ssn\": \"543321\"}," +
+            "\"orderItems\": [{\"orderItemId\": 1, \"item\": {\"itemId\": 1, \"name\": \"Ananas\", " +
+            "\"price\": 25.0},\"quantity\": 1}]}," +
+            "{\"orderId\": 2, \"timestamp\": null, \"customer\":" +
+            "{\"customerId\": 2, \"firstName\": \"Scott\", \"lastName\":\"Eriksson\", \"ssn\": \"334524\"}," +
+            "\"orderItems\": [{\"orderItemId\": 2, \"item\": {\"itemId\": 2, \"name\": \"Gurka\"," +
+            "\"price\": 17.9}, \"quantity\": 1}]}]"));
     }
 
     @Test
