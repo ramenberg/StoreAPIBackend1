@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show all items</title>
+</head>
+<body>
+
+<h2 th:text="${title}" style="text-decoration: underline; padding-left: 175px"></h2>
+
+<div class="allItems" th:unless="${#lists.isEmpty(allItems)}" style="padding-left: 25px">
+
+    <table style="border: 1px solid black; border-collapse: collapse; width: 35%">
+        <thead>
+        <tr>
+            <th th:text="${id}" style="text-align: left; border: 1px solid black; padding: 10px"></th>
+            <th th:text="${name}" style="text-align: left; border: 1px solid black; padding: 10px"></th>
+            <th th:text="${price}" style="text-align: left; border: 1px solid black; padding: 10px"></th>
+            <th style="border-bottom-color: white; border-top-color: white; border-right-color: white"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${allItems}">
+            <td th:text="${item.itemId}" style="text-align: left; border: 1px solid black; padding: 10px"></td>
+            <td th:text="${item.name}" style="text-align: left; border: 1px solid black; padding: 10px"></td>
+            <td th:text="${item.price}" style="text-align: left; border: 1px solid black; padding: 10px"></td>
+            <td style="border-bottom-color: white; border-top-color: white; border-right-color: white; padding: 10px; text-align: center">
+                <a style="text-decoration: none; color: blue"
+                   th:href="@{/graphics/deleteItemById/{id}(id=${item.itemId})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+    <form action="#" th:action="@{/graphics/items/add}">
+        <input type="submit" value="Add new item"
+               style="margin-left: 250px; margin-top: 25px; background-color: palegreen; width: 100px; border-radius: 10px; border: 1px solid black; height: 35px">
+    </form>
+</div>
+
+</body>
+</html>

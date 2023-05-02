@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class StoreApiApplication {
 
     private final Logger log = Logger.getLogger(StoreApiApplication.class.getName());
+    private final Timestamp today = new Timestamp(new Date().getTime());
 
 
     public static void main(String[] args) {
@@ -79,16 +80,16 @@ public class StoreApiApplication {
                 customerRepo.save(c3);
                 log.info("Prep customers" + c1 + " " + c2 + " " + c3);
 
-                Order o1 = new Order(prepDbToday,c1);
-                Order o2= new Order(prepDbToday,c2);
-                Order o3 = new Order(prepDbToday,c3);
+                Order o1 = new Order(prepDbToday, c1);
+                Order o2 = new Order(prepDbToday, c2);
+                Order o3 = new Order(prepDbToday, c3);
                 orderRepo.save(o1);
                 orderRepo.save(o2);
                 orderRepo.save(o3);
 
-                OrderItem orderItem1 = new OrderItem(o1, i1,1);
-                OrderItem orderItem2 = new OrderItem(o2, i2,1);
-                OrderItem orderItem3 = new OrderItem(o3, i3,1);
+                OrderItem orderItem1 = new OrderItem(o1, i1, 1);
+                OrderItem orderItem2 = new OrderItem(o2, i2, 1);
+                OrderItem orderItem3 = new OrderItem(o3, i3, 1);
                 orderItemRepo.save(orderItem1);
                 orderItemRepo.save(orderItem2);
                 orderItemRepo.save(orderItem3);

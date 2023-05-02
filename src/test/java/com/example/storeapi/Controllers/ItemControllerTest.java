@@ -122,8 +122,8 @@ class ItemControllerTest {
     @Test
     void buyItem() throws Exception {
         this.mvc.perform(post("/items/buy")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("customerId", "3").param("itemId", "8")).andExpect(status().isOk()).
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("customerId", "3").param("itemId", "8")).andExpect(status().isOk()).
                 andExpect(content().string(equalTo("Item Bröd med frukt och nötter has been bought by the customer Erik Ljunggren")));
     }
 }
