@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "/graphics")
@@ -46,18 +47,17 @@ public class ItemThymeleafController {
     @GetMapping("/items/{id}")
     public String showItemById(@PathVariable long id, Model model) {
         List<Item> itemList = itemRepo.findAll().stream().filter(item -> item.getItemId() == (id)).toList();
-        if(itemList.size()!=0) {
+        if (itemList.size() != 0) {
             model.addAttribute("allItems", itemList);
             model.addAttribute("id", "Id:");
             model.addAttribute("name", "Name:");
             model.addAttribute("price", "Price:");
             model.addAttribute("title", "The item you required:");
             return "showItem";
-        }
-        else{
+        } else {
             model.addAttribute("title", "The item you required:");
             model.addAttribute("info", "There is no item in the system matching the id " + id + ".");
-            return "showNoCorrespondingItem";
+            return "noCorrespondingItem";
         }
     }
 
@@ -70,8 +70,15 @@ public class ItemThymeleafController {
 
     @PostMapping("/createItem")
     public String createItem(@RequestParam String name, @RequestParam double price, Model model) {
-        itemRepo.save(new Item(name, price));
-        return showAllItems(model);
+        if (!itemAlreadyExists(name, price)) {
+            itemRepo.save(new Item(name, price));
+            return showAllItems(model);
+        } else {
+            model.addAttribute("title", "Please enter information about the new product:");
+            model.addAttribute("info", "ERROR: Item " + name +
+                    " for the price of " + price + " already exists in the database.");
+            return "itemAlreadyExists";
+        }
     }
 
     @RequestMapping("/deleteItem")
@@ -89,5 +96,16 @@ public class ItemThymeleafController {
     public String deleteItem(@PathVariable Long id, Model model) {
         itemRepo.deleteById(id);
         return getAllItemsAfterDelete(model);
+    }
+
+    public Boolean itemAlreadyExists(String name, double price) {
+        List<Item> itemsWithSameName = itemRepo.findAll().stream().filter(currentItem ->
+                currentItem.getName().equals(name)).toList();
+        if (itemsWithSameName.size() != 0) {
+            List<Item> itemsWithTheSamePrice = itemsWithSameName.stream().filter(currentItem ->
+                    Objects.equals(currentItem.getPrice(), price)).toList();
+            return itemsWithTheSamePrice.size() != 0;
+        }
+        return false;
     }
 }

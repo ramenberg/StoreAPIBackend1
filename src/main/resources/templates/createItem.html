@@ -6,15 +6,15 @@
 </head>
 <body>
 
-<h2 th:text="${title}" style="text-decoration: underline; color: slateblue; padding-left: 150px"></h2>
+<h2 th:text="${title}" style="text-decoration: underline; padding-left: 25px"></h2>
 
-<form action="#" th:action="@{/graphics/createItem}" th:object="${item}" method="post" style="padding-left: 25px">
+<form action="#" th:action="@{/graphics/createItem}" th:object="${item}" method="post" style="padding-left: 75px">
     <label for="name">Item name:</label><br>
-    <input type="text" id="name" name="name" value="" style="margin-bottom: 15px; height: 20px; width: 250px"><br>
+    <input type="text" id="name" name="name" value="" style="margin-bottom: 15px; height: 20px; width: 350px"><br>
     <label for="price">Price:</label><br>
-    <input type="text" id="price" name="price" value="" style="height: 20px; width: 250px"><br>
+    <input type="text" id="price" name="price" value="" style="height: 20px; width: 350px"><br>
     <input type="submit" value="Submit"
-           style="margin-left: 75px; margin-top: 25px; background-color: palegreen; width: 100px; border-radius: 10px; border: 1px solid black; height: 35px">
+           style="margin-left: 125px; margin-top: 25px; background-color: palegreen; width: 100px; border-radius: 10px; border: 1px solid black; height: 35px">
 </form>
 
 </body>

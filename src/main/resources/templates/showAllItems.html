@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h2 th:text="${title}" style="text-decoration: underline; color: mediumslateblue; padding-left: 150px"></h2>
+<h2 th:text="${title}" style="text-decoration: underline; padding-left: 200px"></h2>
 
 <div class="allItems" th:unless="${#lists.isEmpty(allItems)}" style="padding-left: 25px">
 
@@ -37,7 +37,7 @@
 <div>
     <form action="#" th:action="@{/graphics/items/add}">
         <input type="submit" value="Add new item"
-               style="margin-left: 200px; margin-top: 25px; background-color: palegreen; width: 100px; border-radius: 10px; border: 1px solid black; height: 35px">
+               style="margin-left: 250px; margin-top: 25px; background-color: palegreen; width: 100px; border-radius: 10px; border: 1px solid black; height: 35px">
     </form>
 </div>
 
