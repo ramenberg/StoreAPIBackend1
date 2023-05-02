@@ -46,12 +46,19 @@ public class ItemThymeleafController {
     @GetMapping("/items/{id}")
     public String showItemById(@PathVariable long id, Model model) {
         List<Item> itemList = itemRepo.findAll().stream().filter(item -> item.getItemId() == (id)).toList();
-        model.addAttribute("allItems", itemList);
-        model.addAttribute("id", "Id:");
-        model.addAttribute("name", "Name:");
-        model.addAttribute("price", "Price:");
-        model.addAttribute("title", "The item you required:");
-        return "showItem";
+        if(itemList.size()!=0) {
+            model.addAttribute("allItems", itemList);
+            model.addAttribute("id", "Id:");
+            model.addAttribute("name", "Name:");
+            model.addAttribute("price", "Price:");
+            model.addAttribute("title", "The item you required:");
+            return "showItem";
+        }
+        else{
+            model.addAttribute("title", "The item you required:");
+            model.addAttribute("info", "There is no item in the system matching the id " + id + ".");
+            return "showNoCorrespondingItem";
+        }
     }
 
     // http://localhost:8080/graphics/items/add (Denna endpoint genererar HTML-sida som skapar en ny vara)
