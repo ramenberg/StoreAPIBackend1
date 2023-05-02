@@ -1,10 +1,8 @@
 package com.example.storeapi.Controllers;
-import com.example.storeapi.Models.OrderItem;
 import com.example.storeapi.Repos.CustomerRepo;
 import com.example.storeapi.Repos.ItemRepo;
 import com.example.storeapi.Repos.OrderItemRepo;
 import com.example.storeapi.Repos.OrderRepo;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

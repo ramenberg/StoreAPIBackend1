@@ -2,7 +2,6 @@ package com.example.storeapi.Controllers;
 
 import com.example.storeapi.Models.Customer;
 import com.example.storeapi.Repos.CustomerRepo;
-import com.example.storeapi.exceptions.CustomerNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,11 +50,6 @@ public class CustomerThymeleafController {
             model.addAttribute("customer", customer);
             return "customer";
         }
-    }
-
-    @GetMapping("/customers/search")
-    public String searchCustomer() {
-        return "customer_search";
     }
 
     @GetMapping("/customers/notfound")
