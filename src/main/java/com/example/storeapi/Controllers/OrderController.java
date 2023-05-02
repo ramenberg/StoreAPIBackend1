@@ -33,12 +33,12 @@ public class OrderController {
         return orderRepo.findAll() ;
     }
 
-    @RequestMapping("orders/{customerId}")
-
-    public List<Order> getCustomerOrders(@PathVariable Long customerId){
-
-        return orderRepo.findAll().stream().filter(order -> order.getCustomer().equals(customerRepo.findById(customerId).get())).toList();
-    }
+//    @RequestMapping("orders/{customerId}")
+//
+//    public List<Order> getCustomerOrders(@PathVariable Long customerId){
+//
+//        return orderRepo.findAll().stream().filter(order -> order.getCustomer().equals(customerRepo.findById(customerId).get())).toList();
+//    }
 
 
 }
