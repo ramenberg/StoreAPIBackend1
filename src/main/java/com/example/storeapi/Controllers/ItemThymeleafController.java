@@ -57,7 +57,7 @@ public class ItemThymeleafController {
 
     // http://localhost:8080/graphics/items/add (Denna endpoint genererar HTML-sida som skapar en ny vara)
     @RequestMapping("/items/add")
-    public String addItem(Model model) {
+    public String addItemThymeleaf(Model model) {
         model.addAttribute("title", "Please enter information about the new product:");
         return "createItem";
     }
@@ -83,16 +83,5 @@ public class ItemThymeleafController {
     public String deleteItem(@PathVariable Long id, Model model) {
         itemRepo.deleteById(id);
         return getAllItemsAfterDelete(model);
-    }
-
-    public Boolean itemAlreadyExists(Item itemToCheck) {
-        List<Item> itemsWithSameName = itemRepo.findAll().stream().filter(currentItem ->
-                currentItem.getName().equals(itemToCheck.getName())).toList();
-        if (itemsWithSameName.size() != 0) {
-            List<Item> itemsWithTheSamePrice = itemsWithSameName.stream().filter(currentItem ->
-                    Objects.equals(currentItem.getPrice(), itemToCheck.getPrice())).toList();
-            return itemsWithTheSamePrice.size() != 0;
-        }
-        return false;
     }
 }
