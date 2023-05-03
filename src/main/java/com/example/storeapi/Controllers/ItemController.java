@@ -61,7 +61,7 @@ public class ItemController {
     // http://localhost:8080/items/buy (Denna endpoint gör ett nytt köp för en specifik kund och
     // en specifik vara, baserat på id).
 
-    @RequestMapping("items/buy")
+    @PostMapping("items/buy")
     public String buyItem(@RequestParam Long customerId, @RequestParam Long itemId) {
         Customer customer = customerRepo.findAll().stream()
                 .filter(currentCustomer -> Objects.equals(currentCustomer.getCustomerId(), customerId)).findFirst().orElse(null);
