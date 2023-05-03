@@ -1,0 +1,15 @@
+POST http://localhost:8080/items/buy
+Content-Type: application/json
+
+{
+  "customerId": 2,
+  "itemId": 3
+}
+
+###
+POST http://localhost:8080/items/buy
+Content-Type: application/x-www-form-urlencoded
+
+customerId=1&itemId=7
+
+###

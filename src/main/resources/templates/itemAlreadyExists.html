@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item already exists</title>
+</head>
+<body>
+
+<h2 th:text="${title}" style="text-decoration: underline; padding-left: 25px"></h2>
+
+<div style="padding-left: 25px">
+
+    <p th:text="${info}"></p>
+
+</div>
+
+<div>
+    <form action="#" th:action="@{/graphics/items/add}">
+        <input type="submit" value="Add another item"
+               style="margin-left: 175px; margin-top: 25px; background-color: palegreen; width: 125px; border-radius: 10px; border: 1px solid black; height: 35px">
+    </form>
+</div>
+
+</body>
+</html>
